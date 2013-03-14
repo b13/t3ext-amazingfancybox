@@ -1,0 +1,56 @@
+
+
+# Add jQuery library
+[globalVar = LIT:1 = {$plugin.tx_amazingfancybox.includejQuery}]
+	page.includeJSlibs.jQuery = EXT:amazingfancybox/Resources/Contrib/lib/jquery-1.7.1.min.js
+
+	# Add mousewheel plugin (this is optional)
+	page.includeJSlibs.jQueryPluginMouseWheel = EXT:amazingfancybox/Resources/Contrib/lib/jquery.mousewheel-3.0.6.pack.js
+[GLOBAL]
+
+# Add fancyBox
+page.includeJS.fancybox = EXT:amazingfancybox/Resources/Contrib/jquery.fancybox.pack.js?v=2.0.5
+page.includeCSS.fancybox = EXT:amazingfancybox/Resources/Contrib/jquery.fancybox.css?v=2.0.5
+
+
+# Optionally add button helper
+page.includeJS.fancyboxButtons = EXT:amazingfancybox/Resources/Contrib/helpers/jquery.fancybox-buttons.js?v=2.0.5
+page.includeCSS.fancyboxButtons = EXT:amazingfancybox/Resources/Contrib/source/helpers/jquery.fancybox-buttons.css?v=2.0.5
+
+# Optionally add thumbnail helpers
+page.includeJS.fancyboxThumbs = EXT:amazingfancybox/Resources/Contrib/helpers/jquery.fancybox-thumbs.js?v=2.0.5
+page.includeCSS.fancyboxThumbs = EXT:amazingfancybox/Resources/Contrib/helpers/jquery.fancybox-thumbs.css?v=2.0.5
+
+page.jsInline.776 = TEXT
+page.jsInline.776.value (
+	$(document).ready(function() {
+		$('.lightbox').fancybox();
+	});
+)
+
+# Integrate FancyBox
+styles.content.imgtext.linkWrap.lightboxEnabled = 1
+styles.content.imgtext.linkWrap.lightboxEnabled.if.isTrue = {$plugin.tx_amazingfancybox.activateTtcontent}
+
+#tt_content.image.20.1 {
+#    imageLinkWrap {
+#        typolink {
+#            parameter.listNum.stdWrap.if.isTrue.field = image_link
+#
+#            ### This returns a link, pointing to the path + name of the original image / resized fancybox image
+#            ### Overriding ONLY when imagezoom AND lightbox are activated AND no link is set
+#            parameter.override.cObject = IMG_RESOURCE
+#            parameter.override.cObject.file.import.data = TSFE:lastImageInfo|origFile
+#            parameter.override.cObject.file.maxW = {$plugin.sk_fancybox.maxW}
+#            parameter.override.cObject.file.maxH = {$plugin.sk_fancybox.maxH}
+#            parameter.override.if.isTrue.field = image_zoom
+#            parameter.override.if.isFalse.field = image_link
+#
+#            ATagParams = rel="fancybox" class="fancybox"
+#            ATagParams.override = class="fancybox" rel="fancybox-{field:uid}"
+#            ATagParams.insertData = 1
+#            ATagParams.if.isTrue.field = image_zoom
+#            ATagParams.if.isFalse.field = image_link
+#        }
+#    }
+#}

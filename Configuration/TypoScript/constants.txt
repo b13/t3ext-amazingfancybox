@@ -1,0 +1,6 @@
+plugin.tx_amazingfancybox {
+	 # cat=plugin.tx_amazingfancybox/a/1; type=string; label=Include jQuery from our Package
+	includejQuery = 0
+	 # cat=plugin.tx_amazingfancybox/a/2; type=string; label=Use it for Click-Enlarge on Image Content Elements
+	activateTtcontent = 1
+}
